@@ -19,7 +19,12 @@ public class AES2 {
 	private final int T_LEN = 128;
 	private byte[] IV;
 
- 
+	public void init() throws Exception {
+		KeyGenerator generator = KeyGenerator.getInstance("AES");
+		generator.init(KEY_SIZE);
+		key = generator.generateKey();
+	}
+	
 	public void initFromStrings(String secretKey, String IV) {
 		key = new SecretKeySpec(decode(secretKey), "AES");
 		this.IV = decode(IV);
