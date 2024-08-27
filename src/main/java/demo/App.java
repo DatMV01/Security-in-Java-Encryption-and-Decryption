@@ -1,4 +1,4 @@
-package demo.Security_in_Java_Encryption_and_Decryption;
+package demo;
 
 /**
  * Hello world!
