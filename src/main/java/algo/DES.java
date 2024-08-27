@@ -34,9 +34,10 @@ public class DES {
 		decCipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
 		encCipher.init(Cipher.ENCRYPT_MODE, key);
 		decCipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(encCipher.getIV()));
+
+		byte[] IV = encCipher.getIV();
+		System.out.println("IV kEY : " + encode(IV));
 	}
-	
- 
 
 	public byte[] encrypt(String message) throws Exception {
 		return encCipher.doFinal(message.getBytes());
@@ -57,18 +58,18 @@ public class DES {
 	public static byte[] decoder(String data) {
 		return Base64.getDecoder().decode(data);
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		SecretKey key = DES.generateKey();
-        System.out.print("Encrypt/Decrypt Key: ");
-        System.out.println(encode(key.getEncoded()));
-        System.out.println();
-		
-        String message = "The X Coders";
+		System.out.print("Encrypt/Decrypt Key: ");
+		System.out.println(encode(key.getEncoded()));
+		System.out.println();
 
-        DES des = new DES(key);
-        String encryptedMessage = encode(des.encrypt(message));
-        System.out.println("Encrypted Message: " + encryptedMessage);
-        System.out.println("Decrypted Message: " + des.decryt(decoder(encryptedMessage)));
+		String message = "The X Coders";
+
+		DES des = new DES(key);
+		String encryptedMessage = encode(des.encrypt(message));
+		System.out.println("Encrypted Message: " + encryptedMessage);
+		System.out.println("Decrypted Message: " + des.decryt(decoder(encryptedMessage)));
 	}
 }

@@ -54,18 +54,18 @@ public class DES2 {
 	public static byte[] decoder(String data) {
 		return Base64.getDecoder().decode(data);
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		SecretKey key = DES2.generateKey();
-        System.out.print("Encrypt/Decrypt Key: ");
-        System.out.println(encode(key.getEncoded()));
-        System.out.println();
-		
-        String message = "The X Coders";
+		System.out.print("Encrypt/Decrypt Key: ");
+		System.out.println(encode(key.getEncoded()));
+		System.out.println();
 
-        DES2 des = new DES2(key);
-        String encryptedMessage = encode(des.encrypt(message));
-        System.out.println("Encrypted Message: " + encryptedMessage);
-        System.out.println("Decrypted Message: " + des.decryt(decoder(encryptedMessage)));
+		String message = "The X Coders";
+
+		DES2 des = new DES2(key);
+		String encryptedMessage = encode(des.encrypt(message));
+		System.out.println("Encrypted Message: " + encryptedMessage);
+		System.out.println("Decrypted Message: " + des.decryt(decoder(encryptedMessage)));
 	}
 }
